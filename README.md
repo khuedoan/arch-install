@@ -327,7 +327,7 @@ Edit NVIDIA desktop icon to run with bumblebee:
 
 At `Exec=/usr/bin/nvidia-settings` line change it to:
 
-```bash
+```desktop
 Exec=optirun -b none /usr/bin/nvidia-settings -c :8
 ```
 
