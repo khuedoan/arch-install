@@ -271,28 +271,6 @@ Clean up:
 
 `cd .. && rm -rf trizen`
 
-## Install zsh
-
-See what shell is currently being used:
-
-`echo $SHELL`
-
-Install the **zsh** package:
-
-`sudo pacman -S zsh zsh-completions`
-
-Initial configuration:
-
-`zsh`
-
-List all installed shells:
-
-`chsh -l`
-
-Set **zsh** as default:
-
-`chsh -s /bin/zsh`
-
 ## Install bumblebee
 
 `sudo pacman -S bumblebee mesa xf86-video-intel nvidia lib32-nvidia-utils lib32-virtualgl nvidia-settings bbswitch`
