@@ -227,7 +227,7 @@ options        root=/dev/nvme0n1p2 rw
 
 Add a new user named `khuedoan`:
 
-`useradd -m -G wheel -s /bin/bash khuedoan`
+`useradd -m -G wheel -s /bin/zsh khuedoan`
 
 Protect the newly created user `khuedoan` with a password:
 
