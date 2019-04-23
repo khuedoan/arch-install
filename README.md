@@ -349,3 +349,13 @@ export XMODIFIERS=@im=fcitx
 ```
 
 Then log out and log back in.
+
+## Install dotfiles
+
+Check out my [dotfiles](https://github.com/khuedoan98/dotfiles) repo
+
+`curl -Lks https://khuedoan.me/dotfiles/install.sh > install.sh`
+
+`chmod +x install.sh`
+
+`./install.sh`
