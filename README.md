@@ -223,6 +223,12 @@ initrd         /initramfs-linux.img
 options        root=/dev/nvme0n1p2 rw
 ```
 
+## Enable network services
+
+`systemctl enable NetworkManager`
+
+`systemctl enable dhcpcd`
+
 ## Add new user
 
 Add a new user named `khuedoan`:
