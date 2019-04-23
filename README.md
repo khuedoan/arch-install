@@ -121,6 +121,14 @@ Change root to the new system:
 
 `arch-chroot /mnt`
 
+## Install optional packages
+
+`pacman -S intel-ucode`
+
+`pacman -S networkmanager dhclient`
+
+`pacman -S git vim zsh`
+
 ## Create swap file
 
 As an alternative to creating an entire swap partition, a swap file offers the ability to vary its size on-the-fly, and is more easily removed altogether.
@@ -186,16 +194,6 @@ Create hostname file at `/etc/hostname` contain the host name, for example:
 `passwd`
 
 Enter your password then confirm it.
-
-## Install optional programs
-
-Install microcode:
-
-`pacman -S intel-ucode`
-
-Install basic packages for network configuration:
-
-`pacman -S iw wpa_supplicant dialog`
 
 ## Install boot loader
 
@@ -273,11 +271,7 @@ Logout if you are using the root account and login with `khuedoan`.
 
 ## Install trizen
 
-Install **git**:
-
-`sudo pacman -S git`
-
-Build **yay**:
+Build **trizen**:
 
 `git clone https://aur.archlinux.org/trizen.git`
 
