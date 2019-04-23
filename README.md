@@ -6,33 +6,33 @@ Installation guide and basic configurations for Arch Linux
 
 Check if the directory exists:
 
-`# ls /sys/firmware/efi/efivars`
+`ls /sys/firmware/efi/efivars`
 
 ## Connect to the internet
 
 Connect to Wi-Fi network:
 
-`# wifi-menu`
+`wifi-menu`
 
 Check if internet connectivity is available:
 
-`# ping -c 3 archlinux.org`
+`ping -c 3 archlinux.org`
 
 ## Update the system clock
 
 Ensure the system clock is accurate:
 
-`# timedatectl set-ntp true`
+`timedatectl set-ntp true`
 
 Check the service status:
 
-`# timedatectl status`
+`timedatectl status`
 
 ## Partition the disks
 
 Identify disks:
 
-`# lsblk`
+`lsblk`
 
 Disks are assigned to a *block device* such as `/dev/nvme0n1`.
 
@@ -57,23 +57,23 @@ Create boot partition and root partition:
 
 Format the boot partition to FAT32:
 
-`# mkfs.fat -F32 /dev/nvme0n1p1`
+`mkfs.fat -F32 /dev/nvme0n1p1`
 
 Format the root partition to ext4:
 
-`# mkfs.ext4 /dev/nvme0n1p2`
+`mkfs.ext4 /dev/nvme0n1p2`
 
 ## Mount the file systems
 
 Mount root partition first:
 
-`# mount /dev/nvme0n1p2 /mnt`
+`mount /dev/nvme0n1p2 /mnt`
 
 Then create mount point for boot partition and mount it accordingly:
 
-`# mkdir /mnt/boot`
+`mkdir /mnt/boot`
 
-`# mount /dev/nvme0n1p1 /mnt/boot`
+`mount /dev/nvme0n1p1 /mnt/boot`
 
 ## Select the mirrors
 
@@ -91,19 +91,19 @@ Rank the mirrors, output the *6* fastest mirrors:
 
 Use the **pacstrap** script:
 
-`# pacstrap /mnt base base-devel`
+`pacstrap /mnt base base-devel`
 
 ## Generate an fstab file
 
 Use `-U` or `-L` to define by UUID or labels:
 
-`# genfstab -U /mnt >> /mnt/etc/fstab`
+`genfstab -U /mnt >> /mnt/etc/fstab`
 
 ## Chroot
 
 Change root to the new system:
 
-`# arch-chroot /mnt`
+`arch-chroot /mnt`
 
 ## Create swap file
 
@@ -111,23 +111,23 @@ As an alternative to creating an entire swap partition, a swap file offers the a
 
 Create a 32 GB (depend on your RAM) swap file:
 
-`# fallocate -l 32G /swapfile`
+`fallocate -l 32G /swapfile`
 
 Set the right permissions:
 
-`# chmod 600 /swapfile`
+`chmod 600 /swapfile`
 
 format it to swap:
 
-`# mkswap /swapfile`
+`mkswap /swapfile`
 
 Activate the swap file:
 
-`# swapon /swapfile`
+`swapon /swapfile`
 
 Edit fstab at `/etc/fstab` to add an entry for the swap file:
 
-`# nano /etc/fstab`
+`nano /etc/fstab`
 
 ```
 /swapfile none swap defaults 0 0
@@ -137,27 +137,27 @@ Edit fstab at `/etc/fstab` to add an entry for the swap file:
 
 Set your time zone by region:
 
-`# ln -sf /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime`
+`ln -sf /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime`
 
 Generate `/etc/adjtime`:
 
-`# hwclock --systohc`
+`hwclock --systohc`
 
 ## Configure locale
 
 Uncomment `en_US.UTF-8 UTF-8` in `/etc/locale.gen`, then generate it:
 
-`# nano /etc/locale.gen`
+`nano /etc/locale.gen`
 
 ```
 en_US.UTF-8 UTF-8
 ```
 
-`# locale-gen`
+`locale-gen`
 
 Set LANG variable in `/etc/locale.conf`:
 
-`# nano /etc/locale.conf`
+`nano /etc/locale.conf`
 
 ```
 LANG=en_US.UTF-8
@@ -167,7 +167,7 @@ LANG=en_US.UTF-8
 
 Create hostname file at `/etc/hostname` contain the host name, for example:
 
-`# nano /etc/hostname`
+`nano /etc/hostname`
 
 ```
 ArchLinux
@@ -175,7 +175,7 @@ ArchLinux
 
 ## Set your root password
 
-`# passwd`
+`passwd`
 
 Enter your password then confirm it.
 
@@ -183,21 +183,21 @@ Enter your password then confirm it.
 
 Install microcode:
 
-`# pacman -S intel-ucode`
+`pacman -S intel-ucode`
 
 Install basic packages for network configuration:
 
-`# pacman -S iw wpa_supplicant dialog`
+`pacman -S iw wpa_supplicant dialog`
 
 ## Install boot loader
 
 Install systemd-boot:
 
-`# bootctl --path=/boot install`
+`bootctl --path=/boot install`
 
 Configure it in `/boot/loader/loader.conf` as you like, for example:
 
-`# nano /boot/loader/loader.conf`
+`nano /boot/loader/loader.conf`
 
 ```
 default  arch
@@ -207,7 +207,7 @@ editor   0
 
 And `/boot/loader/entries/arch.conf`:
 
-`# nano /boot/loader/entries/arch.conf`
+`nano /boot/loader/entries/arch.conf`
 
 ```
 title          Arch Linux
@@ -221,15 +221,15 @@ options        root=/dev/nvme0n1p2 rw
 
 Exit the chroot environment by typing:
 
-`# exit`
+`exit`
 
 Optionally manually unmount all the partitions with:
 
-`# umount -R /mnt`
+`umount -R /mnt`
 
 Restart the machine:
 
-`# reboot`
+`reboot`
 
 ## Login
 
@@ -239,15 +239,15 @@ Login with your root account after the machine has rebooted.
 
 Add a new user named `khuedoan`:
 
-`# useradd -m -G wheel -s /bin/bash khuedoan`
+`useradd -m -G wheel -s /bin/bash khuedoan`
 
 Protect the newly created user `khuedoan` with a password:
 
-`# passwd khuedoan`
+`passwd khuedoan`
 
 Establish nano as the **visudo** editor for the duration of the current shell session:
 
-`# EDITOR=nano visudo`
+`EDITOR=nano visudo`
 
 Then uncomment `%wheel ALL=(ALL) ALL` to allow members of group `wheel` sudo access, uncomment `Defaults targetpw` and change it to `Defaults rootpw` to ask for the root password instead of the user password (then change the comment beside it accordingly).
 
@@ -255,11 +255,11 @@ Then uncomment `%wheel ALL=(ALL) ALL` to allow members of group `wheel` sudo acc
 
 Show system status:
 
-`# systemctl status`
+`systemctl status`
 
 List failed units:
 
-`# systemctl --failed`
+`systemctl --failed`
 
 Logout if you are using the root account and login with `khuedoan`.
 
@@ -267,33 +267,33 @@ Logout if you are using the root account and login with `khuedoan`.
 
 Install **git**:
 
-`$ sudo pacman -S git`
+`sudo pacman -S git`
 
 Build **yay**:
 
-`$ git clone https://aur.archlinux.org/trizen.git`
+`git clone https://aur.archlinux.org/trizen.git`
 
-`$ cd trizen`
+`cd trizen`
 
-`$ makepkg -si`
+`makepkg -si`
 
 Clean up:
 
-`$ cd .. && rm -rf trizen`
+`cd .. && rm -rf trizen`
 
 ## Install zsh
 
 See what shell is currently being used:
 
-`$ echo $SHELL`
+`echo $SHELL`
 
 Install the **zsh** package:
 
-`$ sudo pacman -S zsh zsh-completions`
+`sudo pacman -S zsh zsh-completions`
 
 Initial configuration:
 
-`$ zsh`
+`zsh`
 
 List all installed shells:
 
@@ -305,25 +305,25 @@ Set **zsh** as default:
 
 ## Install bumblebee
 
-`$ sudo pacman -S bumblebee mesa xf86-video-intel nvidia lib32-nvidia-utils lib32-virtualgl nvidia-settings bbswitch`
+`sudo pacman -S bumblebee mesa xf86-video-intel nvidia lib32-nvidia-utils lib32-virtualgl nvidia-settings bbswitch`
 
 Add user to `bumblebee` and `video` group:
 
-`$ sudo gpasswd -a $USER bumblebee`
+`sudo gpasswd -a $USER bumblebee`
 
-`$ sudo gpasswd -a $USER video`
+`sudo gpasswd -a $USER video`
 
 Start bumblebee at boot:
 
-`$ sudo systemctl enable bumblebeed.service`
+`sudo systemctl enable bumblebeed.service`
 
 Reboot:
 
-`$ sudo shutdown -r now`
+`sudo shutdown -r now`
 
 Edit NVIDIA desktop icon to run with bumblebee:
 
-`$ sudo nano /usr/share/applications/nvidia-settings.desktop`
+`sudo nano /usr/share/applications/nvidia-settings.desktop`
 
 At `Exec=/usr/bin/nvidia-settings` line change it to:
 
@@ -333,11 +333,11 @@ Exec=optirun -b none /usr/bin/nvidia-settings -c :8
 
 ## Install Vietnamese Input Method
 
-`$ sudo pacman -S fcitx fcitx-unikey fcitx-im fcitx-configtool`
+`sudo pacman -S fcitx fcitx-unikey fcitx-im fcitx-configtool`
 
 Open `~/.pam_environment` to define the evironment variables:
 
-`$ vim ~/.pam_environment`
+`vim ~/.pam_environment`
 
 Add these line to the bottom of the file:
 
@@ -352,7 +352,7 @@ Then log out and log back in.
 
 ## Install dotfiles
 
-Check out my [dotfiles](https://github.com/khuedoan98/dotfiles) repo
+Check out my [dotfiles](https://github.com/khuedoan98/dotfiles) repo for more details
 
 `curl -Lks https://khuedoan.me/dotfiles/install.sh > install.sh`
 
