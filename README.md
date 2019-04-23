@@ -305,25 +305,23 @@ Set **zsh** as default:
 
 ## Install bumblebee
 
-### Install the necessary packages:
-
 `$ sudo pacman -S bumblebee mesa xf86-video-intel nvidia lib32-nvidia-utils lib32-virtualgl nvidia-settings bbswitch`
 
-### Add user to `bumblebee` and `video` group:
+Add user to `bumblebee` and `video` group:
 
 `$ sudo gpasswd -a $USER bumblebee`
 
 `$ sudo gpasswd -a $USER video`
 
-### Start bumblebee at boot:
+Start bumblebee at boot:
 
 `$ sudo systemctl enable bumblebeed.service`
 
-### Reboot:
+Reboot:
 
 `$ sudo shutdown -r now`
 
-### Edit NVIDIA desktop icon to run with bumblebee:
+Edit NVIDIA desktop icon to run with bumblebee:
 
 `$ sudo nano /usr/share/applications/nvidia-settings.desktop`
 
@@ -331,3 +329,21 @@ At `Exec=/usr/bin/nvidia-settings` line change it to:
 
 > Exec=optirun -b none /usr/bin/nvidia-settings -c :8
 
+## Install Vietnamese Input Method
+
+`$ sudo pacman -S fcitx fcitx-unikey fcitx-im fcitx-configtool`
+
+Open `~/.pam_environment` to define the evironment variables:
+
+`$ vim ~/.pam_environment`
+
+Add these line to the bottom of the file:
+
+```bash
+# Fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+```
+
+Then log out and log back in.
