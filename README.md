@@ -127,7 +127,7 @@ Change root to the new system:
 
 `pacman -S networkmanager dhclient`
 
-`pacman -S git vim zsh dash`
+`pacman -S git gvim zsh dash`
 
 ## Create swap file
 
