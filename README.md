@@ -223,24 +223,6 @@ initrd         /initramfs-linux.img
 options        root=/dev/nvme0n1p2 rw
 ```
 
-## Reboot
-
-Exit the chroot environment by typing:
-
-`exit`
-
-Optionally manually unmount all the partitions with:
-
-`umount -R /mnt`
-
-Restart the machine:
-
-`reboot`
-
-## Login
-
-Login with your root account after the machine has rebooted.
-
 ## Add new user
 
 Add a new user named `khuedoan`:
@@ -257,17 +239,23 @@ Establish vim as the **visudo** editor for the duration of the current shell ses
 
 Then uncomment `%wheel ALL=(ALL) ALL` to allow members of group `wheel` sudo access, uncomment `Defaults targetpw` and change it to `Defaults rootpw` to ask for the root password instead of the user password (then change the comment beside it accordingly).
 
-## Service management
+## Reboot
 
-Show system status:
+Exit the chroot environment by typing:
 
-`systemctl status`
+`exit`
 
-List failed units:
+Optionally manually unmount all the partitions with:
 
-`systemctl --failed`
+`umount -R /mnt`
 
-Logout if you are using the root account and login with `khuedoan`.
+Restart the machine:
+
+`reboot`
+
+## Login
+
+Login with your user account after the machine has rebooted.
 
 ## Install trizen
 
