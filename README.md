@@ -81,11 +81,27 @@ Make a list of mirrors sorted by their speed then remove those from the list tha
 
 Backup the existing mirrorlist:
 
-* `# cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup`
+`cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup`
 
-Rank the mirrors, output the *6* fastest mirrors:
+Edit the mirror list, bring the fastest mirrors to the top.
+For example this is my top 3 mirrors:
 
-* `# rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist`
+`vim /etc/pacman.d/mirrorlist`
+
+```
+##
+## Arch Linux repository mirrorlist
+## Filtered by mirror score from mirror status page
+## Generated on 2019-03-01
+##
+
+## Singapore
+Server = http://mirror.0x.sg/archlinux/$repo/os/$arch
+## Vietnam
+Server = http://f.archlinuxvn.org/archlinux/$repo/os/$arch
+## Netherlands
+Server = http://archlinux.mirror.pcextreme.nl/$repo/os/$arch
+```
 
 ## Install the base and base-devel packages
 
@@ -127,7 +143,7 @@ Activate the swap file:
 
 Edit fstab at `/etc/fstab` to add an entry for the swap file:
 
-`nano /etc/fstab`
+`vim /etc/fstab`
 
 ```
 /swapfile none swap defaults 0 0
@@ -147,7 +163,7 @@ Generate `/etc/adjtime`:
 
 Uncomment `en_US.UTF-8 UTF-8` in `/etc/locale.gen`, then generate it:
 
-`nano /etc/locale.gen`
+`vim /etc/locale.gen`
 
 ```
 en_US.UTF-8 UTF-8
@@ -157,21 +173,13 @@ en_US.UTF-8 UTF-8
 
 Set LANG variable in `/etc/locale.conf`:
 
-`nano /etc/locale.conf`
-
-```
-LANG=en_US.UTF-8
-```
+`echo 'LANG=en_US.UTF-8' > /etc/locale.conf`
 
 ## Change host name
 
 Create hostname file at `/etc/hostname` contain the host name, for example:
 
-`nano /etc/hostname`
-
-```
-ArchLinux
-```
+`echo 'ArchLinux' > /etc/hostname`
 
 ## Set your root password
 
@@ -197,7 +205,7 @@ Install systemd-boot:
 
 Configure it in `/boot/loader/loader.conf` as you like, for example:
 
-`nano /boot/loader/loader.conf`
+`vim /boot/loader/loader.conf`
 
 ```
 default  arch
@@ -207,7 +215,7 @@ editor   0
 
 And `/boot/loader/entries/arch.conf`:
 
-`nano /boot/loader/entries/arch.conf`
+`vim /boot/loader/entries/arch.conf`
 
 ```
 title          Arch Linux
@@ -245,9 +253,9 @@ Protect the newly created user `khuedoan` with a password:
 
 `passwd khuedoan`
 
-Establish nano as the **visudo** editor for the duration of the current shell session:
+Establish vim as the **visudo** editor for the duration of the current shell session:
 
-`EDITOR=nano visudo`
+`visudo`
 
 Then uncomment `%wheel ALL=(ALL) ALL` to allow members of group `wheel` sudo access, uncomment `Defaults targetpw` and change it to `Defaults rootpw` to ask for the root password instead of the user password (then change the comment beside it accordingly).
 
@@ -323,7 +331,7 @@ Reboot:
 
 Edit NVIDIA desktop icon to run with bumblebee:
 
-`sudo nano /usr/share/applications/nvidia-settings.desktop`
+`sudo vim /usr/share/applications/nvidia-settings.desktop`
 
 At `Exec=/usr/bin/nvidia-settings` line change it to:
 
