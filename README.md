@@ -129,7 +129,9 @@ Edit fstab at `/etc/fstab` to add an entry for the swap file:
 
 `# nano /etc/fstab`
 
-> /swapfile none swap defaults 0 0
+```
+/swapfile none swap defaults 0 0
+```
 
 ## Configure time zone
 
@@ -147,7 +149,9 @@ Uncomment `en_US.UTF-8 UTF-8` in `/etc/locale.gen`, then generate it:
 
 `# nano /etc/locale.gen`
 
-> en_US.UTF-8 UTF-8
+```
+en_US.UTF-8 UTF-8
+```
 
 `# locale-gen`
 
@@ -155,7 +159,9 @@ Set LANG variable in `/etc/locale.conf`:
 
 `# nano /etc/locale.conf`
 
-> LANG=en_US.UTF-8
+```
+LANG=en_US.UTF-8
+```
 
 ## Change host name
 
@@ -163,7 +169,9 @@ Create hostname file at `/etc/hostname` contain the host name, for example:
 
 `# nano /etc/hostname`
 
-> ArchLinux
+```
+ArchLinux
+```
 
 ## Set your root password
 
@@ -191,25 +199,23 @@ Configure it in `/boot/loader/loader.conf` as you like, for example:
 
 `# nano /boot/loader/loader.conf`
 
-> default  arch
->
-> timeout  0
->
-> editor   0
+```
+default  arch
+timeout  0
+editor   0
+```
 
 And `/boot/loader/entries/arch.conf`:
 
 `# nano /boot/loader/entries/arch.conf`
 
-> title          Arch Linux
->
-> linux          /vmlinuz-linux
->
-> initrd         /intel-ucode.img
->
-> initrd         /initramfs-linux.img
->
-> options        root=/dev/nvme0n1p2 rw
+```
+title          Arch Linux
+linux          /vmlinuz-linux
+initrd         /intel-ucode.img
+initrd         /initramfs-linux.img
+options        root=/dev/nvme0n1p2 rw
+```
 
 ## Reboot
 
@@ -321,7 +327,9 @@ Edit NVIDIA desktop icon to run with bumblebee:
 
 At `Exec=/usr/bin/nvidia-settings` line change it to:
 
-> Exec=optirun -b none /usr/bin/nvidia-settings -c :8
+```bash
+Exec=optirun -b none /usr/bin/nvidia-settings -c :8
+```
 
 ## Install Vietnamese Input Method
 
