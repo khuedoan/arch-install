@@ -263,20 +263,6 @@ Restart the machine:
 
 Login with your user account after the machine has rebooted.
 
-## Install trizen
-
-Build **trizen**:
-
-`git clone https://aur.archlinux.org/trizen.git`
-
-`cd trizen`
-
-`makepkg -si`
-
-Clean up:
-
-`cd .. && rm -rf trizen`
-
 ## Install bumblebee
 
 `sudo pacman -S bumblebee mesa xf86-video-intel nvidia lib32-nvidia-utils lib32-virtualgl nvidia-settings bbswitch`
