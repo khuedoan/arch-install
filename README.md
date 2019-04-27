@@ -187,7 +187,7 @@ Set LANG variable in `/etc/locale.conf`:
 
 Create hostname file at `/etc/hostname` contain the host name, for example:
 
-`echo 'ArchLinux' > /etc/hostname`
+`echo 'Precision' > /etc/hostname`
 
 ## Set your root password
 
