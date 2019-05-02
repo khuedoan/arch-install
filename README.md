@@ -125,7 +125,7 @@ Change root to the new system:
 
 `pacman -S intel-ucode`
 
-`pacman -S networkmanager dhclient`
+`pacman -S networkmanager`
 
 `pacman -S git gvim zsh`
 
@@ -226,8 +226,6 @@ options        root=/dev/nvme0n1p2 rw
 ## Enable network services
 
 `systemctl enable NetworkManager`
-
-`systemctl enable dhcpcd`
 
 ## Add new user
 
