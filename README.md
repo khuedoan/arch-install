@@ -171,13 +171,7 @@ Generate `/etc/adjtime`:
 
 Uncomment `en_US.UTF-8 UTF-8` in `/etc/locale.gen`, then generate it:
 
-`vim /etc/locale.gen`
-
-```
-en_US.UTF-8 UTF-8
-```
-
-`locale-gen`
+`sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen && locale-gen`
 
 Set LANG variable in `/etc/locale.conf`:
 
