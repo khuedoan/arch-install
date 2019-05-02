@@ -193,7 +193,7 @@ Enter your password then confirm it.
 
 Boot with EFISTUB:
 
-`efibootmgr -d /dev/nvme0n1 -p 1 -c -L "Arch Linux" -l /vmlinuz-linux -u 'initrd=\intel-ucode.img initrd=\initramfs-linux.img root=/dev/nvme0n1p2 rw' -v`
+`efibootmgr -d /dev/nvme0n1 -p 1 -c -L "Arch Linux" -l /vmlinuz-linux -u 'initrd=/intel-ucode.img initrd=/initramfs-linux.img root=/dev/nvme0n1p2 rw' -v`
 
 ## Enable network services
 
