@@ -123,7 +123,7 @@ Change root to the new system:
 
 ## Install optional packages
 
-`pacman -S intel-ucode`
+`pacman -S efibootmgr intel-ucode`
 
 `pacman -S networkmanager`
 
@@ -191,31 +191,9 @@ Enter your password then confirm it.
 
 ## Install boot loader
 
-Install systemd-boot:
+Boot with EFISTUB:
 
-`bootctl --path=/boot install`
-
-Configure it in `/boot/loader/loader.conf` as you like, for example:
-
-`vim /boot/loader/loader.conf`
-
-```
-default  arch
-timeout  0
-editor   0
-```
-
-And `/boot/loader/entries/arch.conf`:
-
-`vim /boot/loader/entries/arch.conf`
-
-```
-title          Arch Linux
-linux          /vmlinuz-linux
-initrd         /intel-ucode.img
-initrd         /initramfs-linux.img
-options        root=/dev/nvme0n1p2 rw
-```
+`efibootmgr --disk /dev/nvme0n1 --part 1 --create --label "Arch Linux" --loader /vmlinuz-linux --unicode 'initrd=\intel-ucode.img initrd=\initramfs-linux.img root=/dev/nvme0n1p2 rw' --verbose`
 
 ## Enable network services
 
