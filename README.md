@@ -233,25 +233,6 @@ Restart the machine:
 
 Login with your user account after the machine has rebooted.
 
-## Install Vietnamese Input Method
-
-`sudo pacman -S fcitx fcitx-unikey fcitx-im fcitx-configtool`
-
-Open `~/.pam_environment` to define the evironment variables:
-
-`vim ~/.pam_environment`
-
-Add these line to the bottom of the file:
-
-```bash
-# Fcitx
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
-```
-
-Then log out and log back in.
-
 ## Install dotfiles
 
 Check out my [dotfiles](https://github.com/khuedoan98/dotfiles) repo for more details
