@@ -203,7 +203,7 @@ Boot with EFISTUB:
 
 Add a new user named `khuedoan`:
 
-`useradd -m -G wheel -s /bin/zsh khuedoan`
+`useradd -m -G wheel -s /bin/zsh -c "Khue Doan" khuedoan`
 
 Protect the newly created user `khuedoan` with a password:
 
