@@ -191,9 +191,41 @@ Enter your password then confirm it.
 
 ## Install boot loader
 
-Boot with EFISTUB:
+There are many ways to boot but I prefer these method
+
+### Boot with EFISTUB:
+
+Kernel can be booted directly by a UEFI motherboard
 
 `efibootmgr -d /dev/nvme0n1 -p 1 -c -L "Arch Linux" -l /vmlinuz-linux -u 'initrd=/intel-ucode.img initrd=/initramfs-linux.img root=/dev/nvme0n1p2 rw quiet' -v`
+
+### Boot with systemd-boot
+
+Install `systemd-boot` to the `/boot` partition:
+
+`bootctl --path=/boot install`
+
+Edit `systemd-boot` options:
+
+`vim /boot/loader/loader.conf`
+
+```
+default arch
+timeout 0
+editor  0
+```
+
+Add Arch boot entry:
+
+`vim /boot/loader/entries/arch.conf`
+
+```
+title   Arch Linux
+linux   /vmlinuz-linux
+initrd  /intel-ucode.img
+initrd  /initramfs-linux.img
+options root=/dev/nvme0n1p2 rw quiet
+```
 
 ## Enable network services
 
