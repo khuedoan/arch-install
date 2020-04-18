@@ -83,7 +83,7 @@ Backup the existing mirrorlist:
 
 `cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup`
 
-Edit the mirror list, bring the fastest mirrors to the top.
+Edit the mirror list, bring the fastest mirrors to the top (you can use `nano` instead of `vim` or `nvim`).
 For example this is my top 3 mirrors:
 
 `vim /etc/pacman.d/mirrorlist`
@@ -107,7 +107,7 @@ Server = http://archlinux.mirror.pcextreme.nl/$repo/os/$arch
 
 Use the **pacstrap** script:
 
-`pacstrap /mnt base base-devel`
+`pacstrap /mnt base linux linux-firmware base-devel`
 
 ## Generate an fstab file
 
@@ -127,7 +127,7 @@ Change root to the new system:
 
 `pacman -S networkmanager`
 
-`pacman -S git gvim zsh`
+`pacman -S git neovim zsh`
 
 ## Create swap file
 
@@ -151,7 +151,7 @@ Activate the swap file:
 
 Edit fstab at `/etc/fstab` to add an entry for the swap file:
 
-`vim /etc/fstab`
+`nvim /etc/fstab`
 
 ```
 /swapfile none swap defaults 0 0
@@ -207,7 +207,7 @@ Install `systemd-boot` to the `/boot` partition:
 
 Edit `systemd-boot` options:
 
-`vim /boot/loader/loader.conf`
+`nvim /boot/loader/loader.conf`
 
 ```
 default arch
@@ -217,7 +217,7 @@ editor  0
 
 Add Arch boot entry:
 
-`vim /boot/loader/entries/arch.conf`
+`nvim /boot/loader/entries/arch.conf`
 
 ```
 title   Arch Linux
@@ -241,9 +241,9 @@ Protect the newly created user `khuedoan` with a password:
 
 `passwd khuedoan`
 
-Establish vim as the **visudo** editor for the duration of the current shell session:
+Establish `nvim` as the **visudo** editor:
 
-`visudo`
+`EDITOR=nvim visudo`
 
 Then uncomment `%wheel ALL=(ALL) ALL` to allow members of group `wheel` sudo access, uncomment `Defaults targetpw` and change it to `Defaults rootpw` to ask for the root password instead of the user password (then change the comment beside it accordingly).
 
