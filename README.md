@@ -268,9 +268,3 @@ Login with your user account after the machine has rebooted.
 ## Install dotfiles
 
 Check out my [dotfiles](https://github.com/khuedoan98/dotfiles) repo for more details
-
-`curl -Lks https://khuedoan.me/dotfiles/install.sh > install.sh`
-
-`chmod +x install.sh`
-
-`./install.sh`
